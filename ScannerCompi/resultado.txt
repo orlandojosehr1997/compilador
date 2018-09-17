@@ -1,0 +1,29 @@
+|        Token        |     Tipo de Token    |    Linea
+|    1    |    LITERAL_ENTERO    |    1     
+|    2    |    LITERAL_ENTERO    |    2     
+|    3    |    LITERAL_ENTERO    |    3 11     
+|    4    |    LITERAL_ENTERO    |    4 11 17     
+|    5    |    LITERAL_ENTERO    |    5 11     
+|    6    |    LITERAL_ENTERO    |    6     
+|    XOR    |    PALABRAS_RESERVADAS    |    7     
+|    RES    |    IDENTIFICADOR    |    8     
+|    A    |    IDENTIFICADOR    |    9     
+|    LOCA    |    IDENTIFICADOR    |    10     
+|    -    |    OPERADOR    |    11     
+|    +    |    OPERADOR    |    11(2)     
+|    *    |    OPERADOR    |    11     
+|    =    |    OPERADOR    |    11(3)     
+|    +=    |    OPERADOR    |    11     
+|    .    |    OPERADOR    |    11     
+|    ASDASD    |    IDENTIFICADOR    |    11     
+|    5.2    |    LITERAL_FLOTANTE    |    13     
+|    -5.2    |    LITERAL_FLOTANTE    |    14     
+|    5.23e-2    |    LITERAL_FLOTANTE    |    15     
+|    5.6E2    |    LITERAL_FLOTANTE    |    16     
+|    RETURN    |    IDENTIFICADOR    |    17     
+|    +2    |    LITERAL_ENTERO    |    17     
+|    -3    |    LITERAL_ENTERO    |    17     
+|    23234    |    LITERAL_ENTERO    |    17     
+|    "hola"    |    LITERAL_STRING    |    18     
+|    'c'    |    LITERAL_CHAR    |    19     
+|    #45    |    LITERAL_CHAR    |    20     
