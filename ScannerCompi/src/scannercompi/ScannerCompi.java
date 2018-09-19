@@ -5,14 +5,8 @@
  */
 package scannercompi;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.util.ArrayList;
 
 /**
  *
@@ -27,9 +21,12 @@ public class ScannerCompi
     public static void main(String[] args)
     {
         String path = "/Users/orlandojose/NetBeansProjects/ScannerCompi/src/scannercompi/Lexer.flex";
-        generarLexer(path);
-        /*
+        
+        
         Scanner x = new Scanner();
+        
+        //x.generarLexer(path);
+        
         try
         {
             x.probarLexerFile();
@@ -38,14 +35,16 @@ public class ScannerCompi
         {
             System.out.println(ex.getMessage());
         }
-        */
+        
+        
     }
+    /*
     public static void generarLexer(String path)
     {
         File file=new File(path);
         jflex.Main.generate(file);
     }
-    /*
+    
     public void tablaResultado(){
         Object[][] matriz = new Object [tokenslist.size()][2];
         for(int i =0; i<tokenslist.size();i++){

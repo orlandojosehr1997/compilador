@@ -67,50 +67,47 @@ public class Scanner
             }
             switch (token)
             {
-                case CAMBIO_LINEA:
-                    lineCount++;
-                    break;
                 case PALABRAS_RESERVADAS:
-                    agregarToken(lexer.lexeme,token,lineCount);
+                    agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case OPERADOR:
-                    agregarToken(lexer.lexeme,token,lineCount);
+                    agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case LITERAL_ENTERO:
-                    agregarToken(lexer.lexeme,token,lineCount);
+                    agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case LITERAL_FLOTANTE:
-                    agregarToken(lexer.lexeme,token,lineCount);
+                    agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case LITERAL_STRING:
-                    agregarToken(lexer.lexeme,token,lineCount);
+                    agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case LITERAL_CHAR:
-                    agregarToken(lexer.lexeme,token,lineCount);
+                    agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case ERROR:
-                    System.out.println("Error, simbolo " + lexer.lexeme + " no reconocido. Linea: " + lineCount);
+                    System.out.println("Error, simbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case IDENTIFICADOR: 
                 {
                     String identificador = lexer.lexeme;
                     if(!(identificador.length()<128))
                     {
-                        System.out.println("Error, el identificador " + identificador + " es más grande que 127 caracteres. Linea: " + lineCount);
+                        System.out.println("Error, el identificador " + identificador + " es más grande que 127 caracteres. Linea: " + (lexer.getYyline()+1));
                     }
                     else if(!Character.isLetter(identificador.charAt(0)))
                     {
-                        System.out.println("Error, el identificador " + identificador + " debe comenzar en una letra. Linea: " + lineCount);
+                        System.out.println("Error, el identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
                     }
                     else
                     {
-                        agregarToken(identificador,token,lineCount);
+                        agregarToken(identificador,token,lexer.getYyline()+1);
                         nombreTokens.add(lexer.lexeme);
                     }
                     break;

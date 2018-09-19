@@ -18,6 +18,5 @@ public enum Token
     LITERAL_FLOTANTE,
     LITERAL_STRING,
     LITERAL_CHAR,
-    ERROR, 
-    CAMBIO_LINEA
+    ERROR
 }
