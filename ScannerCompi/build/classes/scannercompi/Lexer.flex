@@ -16,14 +16,15 @@ SChar = [^\"\\\n\r] | {EscChar}
 EscChar = \\[ntbrf\\\'\"] | {OctalEscape}
 OctalEscape = \\[0-7] | \\[0-7][0-7] | \\[0-3][0-7][0-7]
 ComentarioLinea = "//".*
-ComentarioBloque = "\(\*" ({WHITE}|{ENDLINE}|{SChar})* "\*\)"
-CaracterInvalidoIdentificador = [ \,\<\>\`\~\!\&\#\-\_\|\;\.\/\@\$\%\^\*\=\+]
+ComentarioBloque1 = "\(\*" ({WHITE}|{ENDLINE}|{SChar})* "\*\)"
+ComentarioBloque2 = "\{" ({WHITE}|{ENDLINE}|{SChar})* "\}"
+CaracterInvalidoIdentificador = [ \,\<\>\`\~\!\&\#\|\;\.\/\@\$\%\^\*\=\+]
 %{
 public String lexeme;
 %}
 %%
 
-{ComentarioBloque} {/*Ignore*/}
+{ComentarioBloque1}|{ComentarioBloque2} {/*Ignore*/}
 {WHITE} {/*Ignore*/}
 {ENDLINE} {/*Ignore*/}
 {ComentarioLinea} {/*Ignore*/}
@@ -117,9 +118,9 @@ public String lexeme;
 {L}({L}|{D})* {lexeme=yytext(); return IDENTIFICADOR;}
 
 
-{D}+"\." {lexeme=yytext(); return ERROR;}
-"\."{D}+ {lexeme=yytext(); return ERROR;}
-{D}+ ["\."]? ({D}*{L}+{D}*)+ | ({D}+{L}+{D}*)+ ["\."]? {D}* | ({D}+{L}+{D}*)+ ["\."]? ({D}*{L}+{D}*)+ {lexeme=yytext(); return ERROR;}
-{L}({L}|{D})* {CaracterInvalidoIdentificador}+ ({L}|{D})* {lexeme=yytext(); return ERROR;}
+{D}+"\." {lexeme=yytext(); return ERROR_FLOAT;}
+"\."{D}+ {lexeme=yytext(); return ERROR_FLOAT;}
+{D}+ ["\."]? ({D}*{L}+{D}*)+ | ({D}+{L}+{D}*)+ ["\."]? {D}* | ({D}+{L}+{D}*)+ ["\."]? ({D}*{L}+{D}*)+ {lexeme=yytext(); return ERROR_INT;}
+{L}({L}|{D})* {CaracterInvalidoIdentificador}+ ({L}|{D})* {lexeme=yytext(); return ERROR_IDENTIFICADOR;}
 . {lexeme=yytext(); return ERROR;}
 

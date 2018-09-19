@@ -20,7 +20,7 @@ public class ScannerCompi
      */
     public static void main(String[] args)
     {
-        String path = "/Users/orlandojose/NetBeansProjects/ScannerCompi/src/scannercompi/Lexer.flex";
+        String path = System.getProperty("user.dir")+ "/src/scannercompi/Lexer.flex";
         
         
         Scanner x = new Scanner();

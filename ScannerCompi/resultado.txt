@@ -2,4 +2,3 @@
 |    'c'    |    LITERAL_CHAR    |    26     
 |    #45    |    LITERAL_CHAR    |    27     
 |    a    |    IDENTIFICADOR    |    28 29 30     
-|    a8fs    |    IDENTIFICADOR    |    35     

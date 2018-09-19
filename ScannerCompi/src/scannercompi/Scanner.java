@@ -91,19 +91,31 @@ public class Scanner
                     agregarToken(lexer.lexeme,token,lexer.getYyline()+1);
                     nombreTokens.add(lexer.lexeme);
                     break;
+                case ERROR_FLOAT:
+                    System.out.println("Error Léxico: Número decimal " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
+                    break;
+                case ERROR_INT:
+                    System.out.println("Error Léxico: Número entero " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
+                    break;
+                case ERROR_IDENTIFICADOR:
+                    System.out.println("Error Léxico: Identificador " + lexer.lexeme + " contiene caracteres inválidos. Linea: " + (1+ lexer.getYyline()));
+                    break;
+                case ERROR_CHAR:
+                    System.out.println("Error Léxico: Literal de Char " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
+                    break;
                 case ERROR:
-                    System.out.println("Error, simbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
+                    System.out.println("Error Léxico: Símbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case IDENTIFICADOR: 
                 {
                     String identificador = lexer.lexeme;
                     if(!(identificador.length()<128))
                     {
-                        System.out.println("Error, el identificador " + identificador + " es más grande que 127 caracteres. Linea: " + (lexer.getYyline()+1));
+                        System.out.println("Error Léxico: Identificador debe ser menor que 127 caracteres. Linea " + (lexer.getYyline()+1) + ". Identificador: " + identificador);
                     }
                     else if(!Character.isLetter(identificador.charAt(0)))
                     {
-                        System.out.println("Error, el identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
+                        System.out.println("Error Léxico: Identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
                     }
                     else
                     {
