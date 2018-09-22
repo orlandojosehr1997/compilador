@@ -7,21 +7,24 @@ package XML;
 
 import scannercompi.Scanner;
 import scannercompi.Identificador;
+import scannercompi.Error;
 import java.io.File;
-import java.util.Date;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
@@ -86,7 +89,7 @@ public class XML
             Element errors = doc.createElement("Errores");
             rootElement.appendChild(errors);
             
-            for(String error: scanner.getErrores())
+            for(Error error: scanner.getErrores())
             {
                 // user elements
                 Element nodoError = doc.createElement("Error");
@@ -98,10 +101,21 @@ public class XML
                 attr.setValue(student.getId());
                 studentNode.setAttributeNode(attr);
                 */
-                // name elements
-                Element nombreError = doc.createElement("Mensaje");
-                nombreError.appendChild(doc.createTextNode(error));
+                Element nombreError = doc.createElement("Tipo");
+                nombreError.appendChild(doc.createTextNode(error.getTipoError()));
                 nodoError.appendChild(nombreError);
+                
+                Element nombreToken = doc.createElement("Token");
+                nombreToken.appendChild(doc.createTextNode(error.getToken()));
+                nodoError.appendChild(nombreToken);
+                
+                Element apariciones = doc.createElement("Apariciones");
+                apariciones.appendChild(doc.createTextNode(error.getApariciones()));
+                nodoError.appendChild(apariciones);
+                // name elements
+                Element detalleError = doc.createElement("Detalle");
+                detalleError.appendChild(doc.createTextNode(error.getDetalle()));
+                nodoError.appendChild(detalleError);
             }
             
             // write the content into xml file
@@ -120,6 +134,37 @@ public class XML
         {
             pce.printStackTrace();
         }
+    }
+    
+    public static void convertXMLToHTML(Source xml, Source xslt) 
+    {
+	StringWriter sw = new StringWriter();
+ 
+	try 
+        {
+            FileWriter fw = new FileWriter(System.getProperty("user.dir")+"/scanner.html");
+        
+            TransformerFactory tFactory = TransformerFactory.newInstance();
+            Transformer trasform = tFactory.newTransformer(xslt);
+            trasform.transform(xml, new StreamResult(sw));
+            fw.write(sw.toString());
+            fw.close();
+
+            System.out.println("product.html generated successfully at D:\\template ");
+ 
+	} 
+        catch (IOException | TransformerConfigurationException e) 
+        {
+            e.printStackTrace();
+	} 
+        catch (TransformerFactoryConfigurationError e) 
+        {
+            e.printStackTrace();
+	} 
+        catch (TransformerException e) 
+        {
+            e.printStackTrace();
+	}
     }
     /*
     public static void readXML(BiblioTech theSystem) 

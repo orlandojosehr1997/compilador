@@ -44,7 +44,7 @@ public class Identificador
     
     public String getApariciones()
     {
-        String resultado="";
+        String resultado="|";
         
         Collections.sort(apariciones);//Sorting list
         
@@ -55,11 +55,11 @@ public class Identificador
             int cantidadApariciones = contadorTemp-contador+1;
             if(contador!=contadorTemp)
             {
-                resultado+=linea +"(" + (cantidadApariciones) + ") "; 
+                resultado+= " " + linea +"(" + (cantidadApariciones) + ") |"; 
                 contador=contadorTemp;
             }
             else
-                resultado+=linea + " ";
+                resultado+= " " + linea + " |";
         }
         return resultado;
     }

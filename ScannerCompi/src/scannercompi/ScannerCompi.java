@@ -5,8 +5,11 @@
  */
 package scannercompi;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 
 /**
  *
@@ -30,6 +33,12 @@ public class ScannerCompi
         try
         {
             x.probarLexerFile();
+            Source xml = new StreamSource(new File(System.getProperty("user.dir")+"/scanner.xml"));
+            Source xslt = new StreamSource(System.getProperty("user.dir")+"/style.xsl");
+
+            XML.XML.convertXMLToHTML(xml, xslt);
+            File htmlFile = new File("scanner.html");
+            Desktop.getDesktop().browse(htmlFile.toURI());
         }
         catch(IOException ex)
         {
@@ -38,24 +47,4 @@ public class ScannerCompi
         
         
     }
-    /*
-    public static void generarLexer(String path)
-    {
-        File file=new File(path);
-        jflex.Main.generate(file);
-    }
-    
-    public void tablaResultado(){
-        Object[][] matriz = new Object [tokenslist.size()][2];
-        for(int i =0; i<tokenslist.size();i++){
-            matriz[i][0] = tokenslist.get(i).nombre;
-            matriz[i][1] = tokenslist.get(i).ID;
-        }
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(matriz,
-            new String [] {
-                "Nombre", "ID"
-        }
-        ));
-    }
-    */
 }

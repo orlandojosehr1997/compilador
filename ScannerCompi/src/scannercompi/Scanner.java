@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +24,8 @@ public class Scanner
 {
     private ArrayList<Identificador> tokenslist;
     private ArrayList<String> nombreTokens;
-    private ArrayList<String> errores;
+    //private ArrayList<String> errores;
+    private ArrayList<Error> errores;
     
     public Scanner() {}
     
@@ -95,23 +97,28 @@ public class Scanner
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case ERROR_FLOAT:
-                    errores.add("Error Léxico: Número decimal " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
+                    errores.add(new Error(lexer.lexeme,"Error Lexico","Número decimal inválido.",(1+ lexer.getYyline())));
+                    //errores.add("Error Léxico: Número decimal " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Número decimal " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR_INT:
-                    errores.add("Error Léxico: Número entero " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
+                    errores.add(new Error(lexer.lexeme,"Error Lexico","Número entero  inválido.",(1+ lexer.getYyline())));
+                    //errores.add("Error Léxico: Número entero " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Número entero " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR_IDENTIFICADOR:
-                    errores.add("Error Léxico: Identificador " + lexer.lexeme + " contiene caracteres inválidos. Linea: " + (1+ lexer.getYyline()));
+                    errores.add(new Error(lexer.lexeme,"Error Lexico","Identificador contiene caracteres inválidos.",(1+ lexer.getYyline())));
+                    //errores.add("Error Léxico: Identificador " + lexer.lexeme + " contiene caracteres inválidos. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Identificador " + lexer.lexeme + " contiene caracteres inválidos. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR_CHAR:
-                    errores.add("Error Léxico: Literal de Char " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
+                    errores.add(new Error(lexer.lexeme,"Error Lexico","Número decimal inválido.",(1+ lexer.getYyline())));
+                    //errores.add("Error Léxico: Literal de Char " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Literal de Char " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR:
-                    errores.add("Error Léxico: Símbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
+                    errores.add(new Error(lexer.lexeme,"Error Lexico","Símbolo no reconocido.",(1+ lexer.getYyline())));
+                    //errores.add("Error Léxico: Símbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Símbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case IDENTIFICADOR: 
@@ -119,16 +126,10 @@ public class Scanner
                     String identificador = lexer.lexeme;
                     if(!(identificador.length()<128))
                     {
-                        errores.add("Error Léxico: Identificador debe ser menor que 127 caracteres. Linea " + (lexer.getYyline()+1) + ". Identificador: " + identificador);
+                        errores.add(new Error(identificador,"Error Lexico","Identificador debe ser menor que 127 caracteres.",(1+ lexer.getYyline())));
+                        //errores.add("Error Léxico: Identificador debe ser menor que 127 caracteres. Linea " + (lexer.getYyline()+1) + ". Identificador: " + identificador);
                         System.out.println("Error Léxico: Identificador debe ser menor que 127 caracteres. Linea " + (lexer.getYyline()+1) + ". Identificador: " + identificador);
                     }
-                    /*
-                    else if(!Character.isLetter(identificador.charAt(0)))
-                    {
-                        errores.add("Error Léxico: Identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
-                        System.out.println("Error Léxico: Identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
-                    }
-                    */
                     else
                     {
                         agregarToken(identificador.toLowerCase(),token,lexer.getYyline()+1);
@@ -177,9 +178,8 @@ public class Scanner
         return tokenslist;
     }
 
-    public ArrayList<String> getErrores() 
+    public ArrayList<Error> getErrores() 
     {
         return errores;
-    }
-    
+    }    
 }

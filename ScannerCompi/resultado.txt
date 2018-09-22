@@ -1,15 +1,27 @@
 |         Token        |       Tipo de Token     |    Linea
-|  "Este es un String" |      LITERAL_STRING     |    1     
-|          #3          |       LITERAL_CHAR      |    4     
-|          #45         |       LITERAL_CHAR      |    4     
-|         #123         |       LITERAL_CHAR      |    4     
-|         #765         |       LITERAL_CHAR      |    4     
+|  "Este es un String" |      LITERAL_STRING     |    | 1 |    
+|          #3          |       LITERAL_CHAR      |    | 4 |    
+|          #45         |       LITERAL_CHAR      |    | 4 |    
+|         #123         |       LITERAL_CHAR      |    | 4 |    
+|         #765         |       LITERAL_CHAR      |    | 4 |    
 |" un string de 
 varias 
-lineas"|    LITERAL_STRING    |    8     
-|    ljhgsdkjaghsdf    |      IDENTIFICADOR      |    14     
-|           ;          |         OPERADOR        |    14     
-|         3.0E5        |     LITERAL_FLOTANTE    |    65     
-|        1.5E-4        |     LITERAL_FLOTANTE    |    67     
-|           -          |         OPERADOR        |    69     
-|         5.4E3        |     LITERAL_FLOTANTE    |    73     
+lineas"|    LITERAL_STRING    |    | 8 |    
+|    ljhgsdkjaghsdf    |      IDENTIFICADOR      |    | 14 |    
+|           ;          |         OPERADOR        |    | 14 |    
+|          45          |      LITERAL_ENTERO     |    | 20 |    
+|          89          |      LITERAL_ENTERO     |    | 22 |    
+|          123         |      LITERAL_ENTERO     |    | 26 |    
+|          324         |      LITERAL_ENTERO     |    | 27 |    
+|           +          |         OPERADOR        |    | 28 |    
+|          304         |      LITERAL_ENTERO     |    | 28 |    
+|           -          |         OPERADOR        |    | 31 | 69 |    
+|          989         |      LITERAL_ENTERO     |    | 31 |    
+|         1.23         |     LITERAL_FLOTANTE    |    | 39 |    
+|        123.345       |     LITERAL_FLOTANTE    |    | 41 |    
+|        123.22        |     LITERAL_FLOTANTE    |    | 46 |    
+|         +1.23        |     LITERAL_FLOTANTE    |    | 54 |    
+|       -123.345       |     LITERAL_FLOTANTE    |    | 57 |    
+|         3.0E5        |     LITERAL_FLOTANTE    |    | 65 |    
+|        1.5E-4        |     LITERAL_FLOTANTE    |    | 67 |    
+|         5.4E3        |     LITERAL_FLOTANTE    |    | 73 |    

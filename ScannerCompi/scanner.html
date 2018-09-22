@@ -1,0 +1,146 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+					table.tfmt {
+					border: 1px ;
+					}
+
+					td.colfmt {
+					border: 1px ;
+					background-color: white;
+					color: black;
+					text-align:center;
+					}
+
+					th.thm {
+					background-color: #2E9AFE;
+					color: white;
+					}
+                    
+                    table.tfmt1 {
+					border: 1px ;
+					}
+                    
+                    td.colfmt1 {
+					border: 1px ;
+					background-color: white;
+					color: black;
+					text-align:center;
+					}
+
+					th.thm1 {
+					background-color: #ff0000;
+					color: white;
+					}
+
+				</style>
+</head>
+<body>
+<table class="tfmt">
+<tr>
+<th class="thm" style="width:250px">Token</th><th class="thm" style="width:350px">Tipo Token</th><th class="thm" style="width:250px">Apariciones</th>
+</tr>
+<tr>
+<td class="colfmt">"Este es un String"</td><td class="colfmt">LITERAL_STRING</td><td class="colfmt">| 1 |</td>
+</tr>
+<tr>
+<td class="colfmt">#3</td><td class="colfmt">LITERAL_CHAR</td><td class="colfmt">| 4 |</td>
+</tr>
+<tr>
+<td class="colfmt">#45</td><td class="colfmt">LITERAL_CHAR</td><td class="colfmt">| 4 |</td>
+</tr>
+<tr>
+<td class="colfmt">#123</td><td class="colfmt">LITERAL_CHAR</td><td class="colfmt">| 4 |</td>
+</tr>
+<tr>
+<td class="colfmt">#765</td><td class="colfmt">LITERAL_CHAR</td><td class="colfmt">| 4 |</td>
+</tr>
+<tr>
+<td class="colfmt">" un string de 
+varias 
+lineas"</td><td class="colfmt">LITERAL_STRING</td><td class="colfmt">| 8 |</td>
+</tr>
+<tr>
+<td class="colfmt">ljhgsdkjaghsdf</td><td class="colfmt">IDENTIFICADOR</td><td class="colfmt">| 14 |</td>
+</tr>
+<tr>
+<td class="colfmt">;</td><td class="colfmt">OPERADOR</td><td class="colfmt">| 14 |</td>
+</tr>
+<tr>
+<td class="colfmt">45</td><td class="colfmt">LITERAL_ENTERO</td><td class="colfmt">| 20 |</td>
+</tr>
+<tr>
+<td class="colfmt">89</td><td class="colfmt">LITERAL_ENTERO</td><td class="colfmt">| 22 |</td>
+</tr>
+<tr>
+<td class="colfmt">123</td><td class="colfmt">LITERAL_ENTERO</td><td class="colfmt">| 26 |</td>
+</tr>
+<tr>
+<td class="colfmt">324</td><td class="colfmt">LITERAL_ENTERO</td><td class="colfmt">| 27 |</td>
+</tr>
+<tr>
+<td class="colfmt">+</td><td class="colfmt">OPERADOR</td><td class="colfmt">| 28 |</td>
+</tr>
+<tr>
+<td class="colfmt">304</td><td class="colfmt">LITERAL_ENTERO</td><td class="colfmt">| 28 |</td>
+</tr>
+<tr>
+<td class="colfmt">-</td><td class="colfmt">OPERADOR</td><td class="colfmt">| 31 | 69 |</td>
+</tr>
+<tr>
+<td class="colfmt">989</td><td class="colfmt">LITERAL_ENTERO</td><td class="colfmt">| 31 |</td>
+</tr>
+<tr>
+<td class="colfmt">1.23</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 39 |</td>
+</tr>
+<tr>
+<td class="colfmt">123.345</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 41 |</td>
+</tr>
+<tr>
+<td class="colfmt">123.22</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 46 |</td>
+</tr>
+<tr>
+<td class="colfmt">+1.23</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 54 |</td>
+</tr>
+<tr>
+<td class="colfmt">-123.345</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 57 |</td>
+</tr>
+<tr>
+<td class="colfmt">3.0E5</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 65 |</td>
+</tr>
+<tr>
+<td class="colfmt">1.5E-4</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 67 |</td>
+</tr>
+<tr>
+<td class="colfmt">5.4E3</td><td class="colfmt">LITERAL_FLOTANTE</td><td class="colfmt">| 73 |</td>
+</tr>
+</table>
+<table class="tfmt1">
+<tr>
+<th class="thm1" style="width:200px">Tipo Error</th><th class="thm1" style="width:350px">Token</th><th class="thm1" style="width:200px">Apariciones</th><th class="thm1" style="width:500px">Detalle</th>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">"</td><td class="colfmt1">| 14 |</td><td class="colfmt1">S&iacute;mbolo no reconocido.</td>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">123.</td><td class="colfmt1">| 43 |</td><td class="colfmt1">N&uacute;mero decimal inv&aacute;lido.</td>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">.22</td><td class="colfmt1">| 48 |</td><td class="colfmt1">N&uacute;mero decimal inv&aacute;lido.</td>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">.67</td><td class="colfmt1">| 50 |</td><td class="colfmt1">N&uacute;mero decimal inv&aacute;lido.</td>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">123E10</td><td class="colfmt1">| 69 |</td><td class="colfmt1">N&uacute;mero entero  inv&aacute;lido.</td>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">123.5E</td><td class="colfmt1">| 70 |</td><td class="colfmt1">N&uacute;mero decimal inv&aacute;lido.</td>
+</tr>
+<tr>
+<td class="colfmt1">Error Lexico</td><td class="colfmt1">.4</td><td class="colfmt1">| 73 |</td><td class="colfmt1">N&uacute;mero decimal inv&aacute;lido.</td>
+</tr>
+</table>
+</body>
+</html>
