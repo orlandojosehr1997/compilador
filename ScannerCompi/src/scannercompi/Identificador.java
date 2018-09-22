@@ -30,6 +30,11 @@ public class Identificador
     {
         return nombre;
     }
+
+    public Token getTipoToken() 
+    {
+        return tipoToken;
+    }
     
     public boolean nuevaAparicion(int linea)
     {
@@ -60,7 +65,39 @@ public class Identificador
     }
     public String imprimir()
     {
-        return "|    " + nombre + "    |    " + tipoToken.name() + "    |    " + getApariciones() + "    \n";
+        int sizeToken1 = 25 - tipoToken.name().length();
+        int sizeToken2 = sizeToken1/2;
+        if (sizeToken1%2!=0)
+            {
+                sizeToken1=(sizeToken1/2) + 1;
+            }
+            else
+            {
+                sizeToken1=(sizeToken1/2);
+            }
+        if(nombre.length()<22)
+        {
+            int sizeNombre1 = (22 - nombre.length());
+            int sizeNombre2 = sizeNombre1/2;
+            if (sizeNombre1%2!=0)
+            {
+                sizeNombre1=(sizeNombre1/2) + 1;
+            }
+            else
+            {
+                sizeNombre1=(sizeNombre1/2);
+            }
+            
+            String espacioNombre1 = new String(new char[sizeNombre1]).replace("\0", " ");
+            String espacioNombre2 = new String(new char[sizeNombre2]).replace("\0", " ");
+            String espacioToken1 = new String(new char[sizeToken1]).replace("\0", " ");
+            String espacioToken2 = new String(new char[sizeToken2]).replace("\0", " ");
+            return "|" + espacioNombre1 + nombre + espacioNombre2 + "|" + espacioToken1 + tipoToken.name() + espacioToken2 + "|    " + getApariciones() + "    \n";
+        }
+        else
+        {
+            return "|" + nombre  + "|    " + tipoToken.name() + "    |    " + getApariciones() + "    \n";
+        }
     }
     
 }

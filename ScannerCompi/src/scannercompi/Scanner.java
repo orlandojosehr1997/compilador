@@ -21,8 +21,9 @@ import java.util.ArrayList;
  */
 public class Scanner 
 {
-    ArrayList<Identificador> tokenslist;
-    ArrayList<String> nombreTokens;
+    private ArrayList<Identificador> tokenslist;
+    private ArrayList<String> nombreTokens;
+    private ArrayList<String> errores;
     
     public Scanner() {}
     
@@ -37,6 +38,7 @@ public class Scanner
         int lineCount=1;
         tokenslist = new ArrayList();
         nombreTokens = new ArrayList();
+        errores = new ArrayList();
         //Obtener nombre archivo 
         
         String nombreArchivo = "pruebaScanner";//"archivo.rtf";
@@ -55,6 +57,7 @@ public class Scanner
                 PrintWriter writer;
                 try 
                 {
+                    XML.XML.writeXML(this);
                     writer = new PrintWriter(archivoResultado);
                     writer.print(imprimir());
                     writer.close();
@@ -92,18 +95,23 @@ public class Scanner
                     nombreTokens.add(lexer.lexeme);
                     break;
                 case ERROR_FLOAT:
+                    errores.add("Error Léxico: Número decimal " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Número decimal " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR_INT:
+                    errores.add("Error Léxico: Número entero " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Número entero " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR_IDENTIFICADOR:
+                    errores.add("Error Léxico: Identificador " + lexer.lexeme + " contiene caracteres inválidos. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Identificador " + lexer.lexeme + " contiene caracteres inválidos. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR_CHAR:
+                    errores.add("Error Léxico: Literal de Char " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Literal de Char " + lexer.lexeme + " inválido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case ERROR:
+                    errores.add("Error Léxico: Símbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
                     System.out.println("Error Léxico: Símbolo " + lexer.lexeme + " no reconocido. Linea: " + (1+ lexer.getYyline()));
                     break;
                 case IDENTIFICADOR: 
@@ -111,12 +119,16 @@ public class Scanner
                     String identificador = lexer.lexeme;
                     if(!(identificador.length()<128))
                     {
+                        errores.add("Error Léxico: Identificador debe ser menor que 127 caracteres. Linea " + (lexer.getYyline()+1) + ". Identificador: " + identificador);
                         System.out.println("Error Léxico: Identificador debe ser menor que 127 caracteres. Linea " + (lexer.getYyline()+1) + ". Identificador: " + identificador);
                     }
+                    /*
                     else if(!Character.isLetter(identificador.charAt(0)))
                     {
+                        errores.add("Error Léxico: Identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
                         System.out.println("Error Léxico: Identificador " + identificador + " debe comenzar en una letra. Linea: " + (1+lexer.getYyline()));
                     }
+                    */
                     else
                     {
                         agregarToken(identificador,token,lexer.getYyline()+1);
@@ -152,11 +164,22 @@ public class Scanner
     
     private String imprimir()
     {
-        String resultado="|        Token        |     Tipo de Token    |    Linea\n";
+        String resultado="|         Token        |       Tipo de Token     |    Linea\n";
         for(Identificador token: tokenslist)
         {
             resultado+=token.imprimir();
         }
         return resultado;
     }
+
+    public ArrayList<Identificador> getTokenslist() 
+    {
+        return tokenslist;
+    }
+
+    public ArrayList<String> getErrores() 
+    {
+        return errores;
+    }
+    
 }

@@ -1,4 +1,25 @@
-|        Token        |     Tipo de Token    |    Linea
-|    'c'    |    LITERAL_CHAR    |    26     
-|    #45    |    LITERAL_CHAR    |    27     
-|    a    |    IDENTIFICADOR    |    28 29 30     
+|         Token        |       Tipo de Token     |    Linea
+|  "Este es un String" |      LITERAL_STRING     |    1     
+|          #3          |       LITERAL_CHAR      |    2     
+|          #45         |       LITERAL_CHAR      |    2     
+|         #123         |       LITERAL_CHAR      |    2     
+|         #765         |       LITERAL_CHAR      |    2     
+|" un string de 
+varias 
+lineas"|    LITERAL_STRING    |    3     
+|    ljhgsdkjaghsdf    |      IDENTIFICADOR      |    6     
+|           ;          |         OPERADOR        |    6     
+|          45          |      LITERAL_ENTERO     |    7     
+|          89          |      LITERAL_ENTERO     |    8     
+|          123         |      LITERAL_ENTERO     |    9     
+|          324         |      LITERAL_ENTERO     |    10     
+|         +304         |      LITERAL_ENTERO     |    11     
+|         -989         |      LITERAL_ENTERO     |    12     
+|         1.23         |     LITERAL_FLOTANTE    |    13     
+|        123.345       |     LITERAL_FLOTANTE    |    14     
+|        123.22        |     LITERAL_FLOTANTE    |    16     
+|         +1.23        |     LITERAL_FLOTANTE    |    19     
+|       -123.345       |     LITERAL_FLOTANTE    |    20     
+|         3.0E5        |     LITERAL_FLOTANTE    |    21     
+|        1.5E-4        |     LITERAL_FLOTANTE    |    22     
+|         5.4E3        |     LITERAL_FLOTANTE    |    25     
