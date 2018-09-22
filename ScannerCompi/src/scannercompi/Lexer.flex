@@ -5,7 +5,7 @@ import static scannercompi.Token.*;
 %type Token
 %line
 %ignorecase
-L = [a-zA-Z\_]
+L = [a-zA-Z_]
 D = [0-9]
 WHITE=[ \t\r]
 ENDLINE=[\n]
@@ -16,7 +16,7 @@ SChar = [^\"\\\n\r] | {EscChar}
 EscChar = \\[ntbrf\\\'\"] | {OctalEscape}
 OctalEscape = \\[0-7] | \\[0-7][0-7] | \\[0-3][0-7][0-7]
 ComentarioLinea = "//".*
-ComentarioBloque = "\(\*" ({WHITE}|{ENDLINE}|{L}|{D}|{SChar}|[\"])* "\*\)" | "\{" ({WHITE}|{ENDLINE}|{L}|{D}|{SChar}|[\"])* "\}"
+ComentarioBloque = "\(\*" ({WHITE}|{ENDLINE}|{L}|{D}|{SChar}|[\"])* "\*\)" | "{" ([^\}]|.|{WHITE}|{ENDLINE})* "}"
 CaracterInvalidoIdentificador = [ \,\<\>\`\~\!\&\#\|\.\/\@\$\%\^\*\=\+]
 %{
 public String lexeme;
@@ -31,7 +31,7 @@ public String lexeme;
 \'{CChar}\' | \# {D}+ {lexeme=yytext(); return LITERAL_CHAR;}
 \"({WHITE}|{ENDLINE}|{SChar})*\" {lexeme=yytext(); return LITERAL_STRING;}
 {Float} | {Float} {Exponent} {D}+  {lexeme=yytext(); return LITERAL_FLOTANTE;}
-[\+\-]?("(-"{D}+")")|[\+\-]?{D}+ {lexeme=yytext(); return LITERAL_ENTERO;}
+{D}+ {lexeme=yytext(); return LITERAL_ENTERO;}
 
 "XOR" {lexeme = "XOR"; return OPERADOR;}
 "WRITE" {lexeme = "WRITE"; return PALABRAS_RESERVADAS;}
@@ -118,5 +118,6 @@ public String lexeme;
 
 {D}+"\." {lexeme=yytext(); return ERROR_FLOAT;}
 "\."{D}+ {lexeme=yytext(); return ERROR_FLOAT;}
-[\+\-]?{D}+ ["\."]? ({D}*{L}+{D}*)+ | [\+\-]?({D}+{L}+{D}*)+ ["\."]? {D}* | [\+\-]?({D}+{L}+{D}*)+ ["\."]? ({D}*{L}+{D}*)+ {lexeme=yytext(); return ERROR_INT;}
+({D}+{L}+{D}*)+ {lexeme=yytext(); return ERROR_INT;}
+{D}+ ["\."]? ({D}*{L}+{D}*)+ | ({D}+{L}+{D}*)+ ["\."]? {D}* | ({D}+{L}+{D}*)+ ["\."]? ({D}*{L}+{D}*)+ {lexeme=yytext(); return ERROR_FLOAT;}
 . {lexeme=yytext(); return ERROR;}

@@ -131,8 +131,8 @@ public class Scanner
                     */
                     else
                     {
-                        agregarToken(identificador,token,lexer.getYyline()+1);
-                        nombreTokens.add(lexer.lexeme);
+                        agregarToken(identificador.toLowerCase(),token,lexer.getYyline()+1);
+                        nombreTokens.add(identificador.toLowerCase());
                     }
                     break;
                 }
