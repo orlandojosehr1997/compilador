@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
+import java.util.Scanner;
+
 
 /**
  *
@@ -26,18 +28,20 @@ public class ScannerCompi
         String path = System.getProperty("user.dir")+ "/src/scannercompi/Lexer.flex";
         
         
-        Scanner x = new Scanner();
+        ScannerABC x = new ScannerABC();
         
         //x.generarLexer(path);
-        
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Digite la ruta del archivo fuente (Sin extención): ");
+        String nombreArchivo = reader.nextLine();
         try
         {
-            x.probarLexerFile();
-            Source xml = new StreamSource(new File(System.getProperty("user.dir")+"/scanner.xml"));
+            x.probarLexerFile(nombreArchivo);
+            Source xml = new StreamSource(new File(nombreArchivo+".xml"));
             Source xslt = new StreamSource(System.getProperty("user.dir")+"/style.xsl");
 
-            XML.XML.convertXMLToHTML(xml, xslt);
-            File htmlFile = new File("scanner.html");
+            XML.XML.convertXMLToHTML(xml, xslt, nombreArchivo);
+            File htmlFile = new File(nombreArchivo+".html");
             Desktop.getDesktop().browse(htmlFile.toURI());
         }
         catch(IOException ex)
